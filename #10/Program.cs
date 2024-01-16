@@ -14,13 +14,9 @@ vector = BubbleSort(vector);
 Console.WriteLine("\nVectorul sortat este urmatorul: ");
 PrintArr(vector);
 
-int pos = BinarySearcch(vector, k);
-if (pos == -1) {
-    Console.WriteLine("\nElementul nu se regaseste in vector");
-}
-else {
-    Console.WriteLine($"\nNumarul {k} se afla pe pozitia {pos} a vectorului");
-}
+int pos = BinarySearch(vector, k);
+string output = PrintResult(pos, k);
+Console.WriteLine(output);
 
 static int[] GetNums(int n)
 {
@@ -62,7 +58,7 @@ static int[] BubbleSort(int[] arr)
     return arr;
 }
 
-static int BinarySearcch(int[] arr, int num)
+static int BinarySearch(int[] arr, int num)
 {
     int small = 0;
     int big = arr.Length - 1;
@@ -82,4 +78,12 @@ static int BinarySearcch(int[] arr, int num)
         }
     }
     return  -1;
+}
+
+static string PrintResult(int position, int num)
+{
+    if (position == -1) {
+        return "\nElementul nu se regaseste in vector";
+    }
+    return $"\nNumarul {num} se afla pe pozitia {position} a vectorului";
 }
