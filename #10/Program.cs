@@ -3,10 +3,24 @@
 Console.WriteLine("Cate numere are sirul?");
 int len = Convert.ToInt32(Console.ReadLine());
 int[] vector = GetNums(len);
+
 Console.WriteLine("Numerele din sir sunt");
 PrintArr(vector);
 
+Console.Write("\nCe numar vrei sa gasesti? K: ");
+int k = Convert.ToInt32(Console.ReadLine());
+
 vector = BubbleSort(vector);
+Console.WriteLine("\nVectorul sortat este urmatorul: ");
+PrintArr(vector);
+
+int pos = BinarySearcch(vector, k);
+if (pos == -1) {
+    Console.WriteLine("\nElementul nu se regaseste in vector");
+}
+else {
+    Console.WriteLine($"\nNumarul {k} se afla pe pozitia {pos} a vectorului");
+}
 
 static int[] GetNums(int n)
 {
@@ -48,7 +62,24 @@ static int[] BubbleSort(int[] arr)
     return arr;
 }
 
-static void BinarySearcch(int[] arr)
+static int BinarySearcch(int[] arr, int num)
 {
-    
+    int small = 0;
+    int big = arr.Length - 1;
+    int pos = 0;
+
+    while (small <= big) {
+        int mid = (big + small) / 2;
+        if (num == mid) {
+            pos = Array.IndexOf(arr, mid);
+            return pos;
+        }
+        else if (num < mid) {
+            big = mid - 1;
+        }
+        else {
+            small = mid + 1;
+        }
+    }
+    return  -1;
 }
